@@ -1,0 +1,213 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+body{
+    background: url("images/bg-desktop-dark.jpg") top no-repeat, hsl(235, 21%, 11%);
+    background-size:100%;
+}
+.body-wrapper{
+    width: calc(100% - 62.3vw);
+    margin:8.5vh auto;
+}
+.header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:3rem;
+    img{
+        width:30px;
+    }
+    h1{
+        color:white;
+        letter-spacing: 1.1rem;
+        font-size: 2.5rem;
+    }
+}
+.new-card{
+    margin-bottom: 3vh;
+    border-radius: 0.3em;
+    overflow:hidden;
+}
+.item-card{
+    
+    grid-template-columns: 1fr 1fr;
+    background-color: hsl(235, 24%, 19%);
+    width:100%;
+    height: 64.078px;
+    
+    position:relative;
+}
+.item-card::after{
+    content: " ";
+    transform: translate(-50%,-50%);
+    position: absolute;
+    top:50%;
+    left:35px;
+    width:23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 1px solid hsla(234, 39%, 85%, 0.13);
+}
+
+
+.input-field{
+    background:transparent;
+    border:none;
+    position:absolute;
+    left:70px;
+    top:50%;
+    color:hsl(234, 39%, 85%);
+    transform: translate(0,-50%);
+    width:80%;
+    font-size:20px;
+    height: 100%;
+    &::placeholder{
+        color: hsl(234, 11%, 52%);
+        font-size:18px;
+    }
+}
+.check-list{
+    border-radius: 0.3em;
+    overflow:hidden;
+    
+    .item-card{
+        border-bottom: 1px solid hsla(234, 39%, 85%, 0.13);
+        cursor:pointer;
+        h3{
+            position:absolute;
+            top:50%;
+            transform: translate(0,-50%);
+            left:70px;
+            color: hsl(234, 39%, 85%);
+            font-weight: 400;
+            
+        }
+    }
+}
+.checked{
+    h3{
+        color: hsl(233, 14%, 35%)!important;
+        text-decoration: line-through;
+        text-decoration-color: hsl(233, 14%, 35%);
+    }
+    &::after{
+        background:url("images/icon-check.svg") center no-repeat, linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    }
+}
+.checklist-footer{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    background-color: hsl(235, 24%, 19%);
+    padding:20px;
+    color:hsl(234, 11%, 52%);
+    h5{
+        font-weight: 400;
+    }
+}
+.filter-list{
+    display: flex;
+    justify-content: space-between;
+    flex-basis:150px;
+    margin:auto;
+    h5{
+        font-weight: 700;
+    }
+}
+input:focus-visible{
+    outline-color: transparent;
+    outline-width:0;
+}
+.clicked{
+    color: hsl(220, 98%, 61%);
+}
+.filter:hover , .clear:hover{
+    color:white;
+    cursor:pointer;
+}
+.whitebody{
+    background-image: url("images/bg-desktop-light.jpg");
+    background-color: hsl(0, 0%, 98%)
+}
+.whitecard{
+    background-color: white;
+    
+    h3{
+        color: hsl(235, 21%, 11%)!important;
+    }
+}
+.whitefooter{
+    color: hsl(236, 9%, 61%);
+    background-color:white;
+    .filter:hover, .clear:hover{
+        color: hsl(235, 19%, 35%);
+    }
+}
+.whitechecked{
+    
+    
+    h3{
+        text-decoration: line-through;
+        color: hsl(233, 11%, 84%)!important;
+        text-decoration-color:hsl(236, 9%, 61%)!important;
+    }
+    &::after{
+        background:url("images/icon-check.svg") center no-repeat, linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    }
+}
+.whitecard::after{
+    border-color:rgba(0, 0, 0, 0.205);
+}
+.whitechecklist{
+    box-shadow: 0px 7px 24px 0px rgba(176,173,176,1);
+}
+.whitebody{
+    
+    background: url("images/bg-desktop-light.jpg") top no-repeat, hsl(0, 0%, 98%);
+    background-size:100%;
+}
+.mobile-menu{
+    display: none;
+}
+@media screen and (max-width:1220px){
+    .body-wrapper{
+        width: calc(100% - 22.3vw);
+    }
+}
+@media screen and (max-width:425px){
+    .checklist-footer > .filter-list{
+        display: none;
+    }
+    .mobile-menu{
+        display: flex;
+        justify-content: space-evenly;
+        padding:1em;
+        background-color:#25273c;
+        margin-top:2rem;
+        border-radius: 0.25em;
+        color:hsl(234, 11%, 52%);
+    }
+    .whitemobile{
+        background-color:white;
+        box-shadow: 0px 7px 24px 0px rgba(176,173,176,1);
+    }
+    .filter:hover{
+        color: hsl(220, 98%, 61%);
+    }
+    h1,h3{
+        font-size:1em;
+    }
+    body{
+        background: url("images/bg-mobile-dark.jpg") top no-repeat, hsl(235, 21%, 11%);
+        background-size:100%;
+    }
+    .whitebody{
+        background: url("images/bg-mobile-light.jpg") top no-repeat, hsl(0, 0%, 98%);
+        background-size:100%;
+    }
+    .input-field::placeholder{
+        font-size:0.9em;
+    }
+}

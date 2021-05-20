@@ -1,0 +1,247 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  background: url("images/bg-desktop-dark.jpg") top no-repeat, #161722;
+  background-size: 100%;
+}
+
+.body-wrapper {
+  width: calc(100% - 62.3vw);
+  margin: 8.5vh auto;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.header-wrapper img {
+  width: 30px;
+}
+.header-wrapper h1 {
+  color: white;
+  letter-spacing: 1.1rem;
+  font-size: 2.5rem;
+}
+
+.new-card {
+  margin-bottom: 3vh;
+  border-radius: 0.3em;
+  overflow: hidden;
+}
+
+.item-card {
+  grid-template-columns: 1fr 1fr;
+  background-color: #25273c;
+  width: 100%;
+  height: 64.078px;
+  position: relative;
+}
+
+.item-card::after {
+  content: " ";
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 35px;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border: 1px solid rgba(202, 205, 232, 0.13);
+}
+
+.input-field {
+  background: transparent;
+  border: none;
+  position: absolute;
+  left: 70px;
+  top: 50%;
+  color: #cacde8;
+  transform: translate(0, -50%);
+  width: 80%;
+  font-size: 20px;
+  height: 100%;
+}
+.input-field::-moz-placeholder {
+  color: #777a92;
+  font-size: 18px;
+}
+.input-field:-ms-input-placeholder {
+  color: #777a92;
+  font-size: 18px;
+}
+.input-field::placeholder {
+  color: #777a92;
+  font-size: 18px;
+}
+
+.check-list {
+  border-radius: 0.3em;
+  overflow: hidden;
+}
+.check-list .item-card {
+  border-bottom: 1px solid rgba(202, 205, 232, 0.13);
+  cursor: pointer;
+}
+.check-list .item-card h3 {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 70px;
+  color: #cacde8;
+  font-weight: 400;
+}
+
+.checked h3 {
+  color: #4d5066 !important;
+  text-decoration: line-through;
+  -webkit-text-decoration-color: #4d5066;
+          text-decoration-color: #4d5066;
+}
+.checked::after {
+  background: url("images/icon-check.svg") center no-repeat, linear-gradient(to right, #57ddff, #c058f3);
+}
+
+.checklist-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #25273c;
+  padding: 20px;
+  color: #777a92;
+}
+.checklist-footer h5 {
+  font-weight: 400;
+}
+
+.filter-list {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 150px;
+  margin: auto;
+}
+.filter-list h5 {
+  font-weight: 700;
+}
+
+input:focus-visible {
+  outline-color: transparent;
+  outline-width: 0;
+}
+
+.clicked {
+  color: #3a7bfd;
+}
+
+.filter:hover, .clear:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.whitebody {
+  background-image: url("images/bg-desktop-light.jpg");
+  background-color: #fafafa;
+}
+
+.whitecard {
+  background-color: white;
+}
+.whitecard h3 {
+  color: #161722 !important;
+}
+
+.whitefooter {
+  color: #9394a5;
+  background-color: white;
+}
+.whitefooter .filter:hover, .whitefooter .clear:hover {
+  color: #484b6a;
+}
+
+.whitechecked h3 {
+  text-decoration: line-through;
+  color: #d2d3db !important;
+  -webkit-text-decoration-color: #9394a5 !important;
+          text-decoration-color: #9394a5 !important;
+}
+.whitechecked::after {
+  background: url("images/icon-check.svg") center no-repeat, linear-gradient(to right, #57ddff, #c058f3);
+}
+
+.whitecard::after {
+  border-color: rgba(0, 0, 0, 0.205);
+}
+
+.whitechecklist {
+  box-shadow: 0px 7px 24px 0px #b0adb0;
+}
+
+.whitebody {
+  background: url("images/bg-desktop-light.jpg") top no-repeat, #fafafa;
+  background-size: 100%;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+@media screen and (max-width: 1220px) {
+  .body-wrapper {
+    width: calc(100% - 22.3vw);
+  }
+}
+@media screen and (max-width: 425px) {
+  .checklist-footer > .filter-list {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1em;
+    background-color: #25273c;
+    margin-top: 2rem;
+    border-radius: 0.25em;
+    color: #777a92;
+  }
+
+  .whitemobile {
+    background-color: white;
+    box-shadow: 0px 7px 24px 0px #b0adb0;
+  }
+
+  .filter:hover {
+    color: #3a7bfd;
+  }
+
+  h1, h3 {
+    font-size: 1em;
+  }
+
+  body {
+    background: url("images/bg-mobile-dark.jpg") top no-repeat, #161722;
+    background-size: 100%;
+  }
+
+  .whitebody {
+    background: url("images/bg-mobile-light.jpg") top no-repeat, #fafafa;
+    background-size: 100%;
+  }
+
+  .input-field::-moz-placeholder {
+    font-size: 0.9em;
+  }
+
+  .input-field:-ms-input-placeholder {
+    font-size: 0.9em;
+  }
+
+  .input-field::placeholder {
+    font-size: 0.9em;
+  }
+}/*# sourceMappingURL=style.css.map */
