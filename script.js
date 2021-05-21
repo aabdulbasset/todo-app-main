@@ -4,16 +4,26 @@ $(document).on('click','.item-card',checkUncheck)
 $(".clear").click(clearCompleted)
 $().ready(calculateItems)
 $(".theme-switcher").click(changeTheme)
+$(window).resize(responsive)
+$().ready(responsive)
 //functions
-function checkUncheck(){
-    var classes = $(this)[0].className
-    
-    if(classes.includes("input-card")){
-        console.log()
-    }else if(classes.includes("whitecard")){
-        $(this).toggleClass("whitechecked")
+function responsive(){
+    var width = $(window).width()
+    if(width<1060){
+        console.log($(".body-image-light")[0].src)
+        $(".body-image-light").attr("src","images/bg-mobile-light.jpg")
+        $(".body-image-dark").attr("src","images/bg-mobile-dark.jpg")
     }else{
-        $(this).toggleClass("checked")
+        $(".body-image-light").attr("src","images/bg-desktop-light.jpg")
+        $(".body-image-dark").attr("src","images/bg-desktop-dark.jpg")
+    }
+}
+function checkUncheck(){
+    var classes = $(this)[0].children[0]
+    if(classes.className == "checked"){
+        classes.className = ""
+    }else if(classes.className == ""){
+        classes.className = "checked"
     }
 }
 function selectFilter(){
@@ -26,29 +36,52 @@ function selectFilter(){
         applyFilter("completed")
     }else(
         applyFilter("all")
-    )
+    ) 
 }
 function applyFilter(type){
-    $(".item-card").css("display","block")
-    var cards = $(".item-card");
-    cards.each(function(index){
-        if(type=="completed"){
-            $(".item-card").css("display","none")
-            $(".item-card.checked").css("display","block")
-            $(".item-card.whitechecked").css("display","block")
-        }else if(type == "active"){
-            $(".item-card.checked").css("display","none")
-            $(".item-card.whitechecked").css("display","none")
+    var checked = []
+    var active = []
+    $("h3").each(function(i){
+        if($("h3")[i].className == "checked"){
+            checked.push($("h3")[i].parentElement)
+        }else{
+            active.push($("h3")[i].parentElement)
         }
-        $(".input-card").css("display","block")
     })
+
+    if(type == "completed"){
+        active.forEach(function(j,i){
+            j.classList.add("removing")
+        })
+        checked.forEach(function(j,i){
+            j.classList.remove("removing")
+        })
+    }else if(type == "active"){
+        active.forEach(function(j,i){
+            j.classList.remove("removing")
+        })
+        checked.forEach(function(j,i){
+            j.classList.add("removing")
+        })
+    }else{
+        active.forEach(function(j,i){
+            j.classList.remove("removing")
+        })
+        checked.forEach(function(j,i){
+            j.classList.remove("removing")
+        })
+    }
+   
 }
 function addCard(e){
     if(e.charCode == 13){
         var text = $(".input-field").val()
-        var formattedtext = '<div class="item-card""><h3>'+text+ '</h3></div>'
+        var formattedtext = '<div class="item-card removing""><h3>'+text+ '</h3></div>'
         if(text != ""){
             $(".checklist-footer").before(formattedtext)
+            setTimeout(function(){
+                $(".removing").removeClass("removing")
+            },100)
             calculateItems()
         }else{
             console.log("Empty text")
@@ -56,22 +89,40 @@ function addCard(e){
     }
 }
 function clearCompleted(){
-    $(".checked").remove()
-    $(".whitechecked").remove()
+    var loop = $(".checked");
+    loop.each(function(i){
+        $(".checked")[i].parentElement.classList.add("removing")
+        setTimeout(function(){
+            $(".removing").remove()
+            
+        },400)
+    })
+
+    
     calculateItems()
 }
 function calculateItems(){
     var noitems = ($(".item-card").length)-1
     console.log(noitems)
-    $(".left").text(noitems + " items left")
-    
+    $(".left").text(noitems + " items left")   
 }
 function changeTheme(){
-    $(".item-card").toggleClass("whitecard")
-    $(".checklist-footer").toggleClass("whitefooter")
-    $(".item-card").removeClass("checked")
-    $(".item-card").removeClass("whitechecked")
-    $("body").toggleClass("whitebody")
-    $(".check-list").toggleClass("whitechecklist")
-    $(".mobile-menu").toggleClass("whitemobile")
+    $("html").attr("data-theme",function(i,e){
+        if(e=="light"){
+            $(".theme-switcher").addClass("changing")
+            setTimeout(function(){
+                $(".theme-switcher").attr("src","images/icon-sun.svg")
+                $(".theme-switcher").removeClass("changing")
+            },150)
+            return "dark"
+        }else{
+            $(".theme-switcher").addClass("changing")
+            setTimeout(function(){
+                $(".theme-switcher").attr("src","images/icon-moon.svg")
+                $(".theme-switcher").removeClass("changing")
+            },150)
+            return "light"
+        }
+    })
+    
 }

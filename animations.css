@@ -1,0 +1,9 @@
+.changing {
+  opacity: 0;
+  transform: rotate(300deg);
+}
+
+.removing {
+  height: 0px;
+  opacity: 0;
+}/*# sourceMappingURL=animations.css.map */

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
@@ -16,11 +16,13 @@
   </style>
 </head>
 <body>
+  <img class="body-image-light" src="images/bg-desktop-light.jpg">
+  <img class="body-image-dark" src="images/bg-desktop-dark.jpg">
   <main class="body-wrapper">
     
     <header class="header-wrapper">
       <h1>TODO</h1>
-      <img class="theme-switcher" src="images/icon-sun.svg" alt="Theme switcher sun">
+      <img class="theme-switcher" src="images/icon-moon.svg" alt="Theme switcher sun">
     </header>
 
     <div class="new-card">
@@ -30,8 +32,8 @@
     </div>
     
     <div class="check-list">
-      <div class="item-card checked">
-        <h3>Jog around the park 3x</h3>
+      <div class="item-card">
+        <h3 class="checked">Jog around the park 3x</h3>
       </div>
       <div class="item-card">
         <h3>Jog around the park 4x</h3>
@@ -56,6 +58,7 @@
     </div>
   </main>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
   <script src="script.js"></script>
