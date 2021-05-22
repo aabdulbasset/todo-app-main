@@ -6,4 +6,7 @@
 .removing {
   height: 0px;
   opacity: 0;
+}
+.removing h3 {
+  opacity: 0;
 }/*# sourceMappingURL=animations.css.map */

@@ -2,15 +2,48 @@
 $(".filter").click(selectFilter)
 $(document).on('click','.item-card',checkUncheck)
 $(".clear").click(clearCompleted)
-$().ready(calculateItems)
+$().ready(function(){
+    classify();
+    calculateItems();
+    responsive();
+    test()
+
+})
 $(".theme-switcher").click(changeTheme)
 $(window).resize(responsive)
-$().ready(responsive)
+//variables
+var checked = []
+var active = []
+
 //functions
+function classify(){
+    $("h3").each(function(i){
+        if($("h3")[i].className == "checked"){
+            if(checked.includes($("h3")[i].parentElement)){
+                console.log()
+            }else{
+                checked.push($("h3")[i].parentElement)
+            }
+        }else if($("h3")[i].className != "checked"){
+            if(active.includes($("h3")[i].parentElement)){
+                console.log()
+            }else{
+                active.push($("h3")[i].parentElement)
+            }
+        }
+    })
+    test()
+    calculateItems();
+}
+function test(){
+    console.log(active)
+    console.log("Checked: ")
+    console.log(checked)
+}
 function responsive(){
     var width = $(window).width()
     if(width<1060){
-        console.log($(".body-image-light")[0].src)
+        
         $(".body-image-light").attr("src","images/bg-mobile-light.jpg")
         $(".body-image-dark").attr("src","images/bg-mobile-dark.jpg")
     }else{
@@ -25,30 +58,23 @@ function checkUncheck(){
     }else if(classes.className == ""){
         classes.className = "checked"
     }
+    calculateItems();
 }
 function selectFilter(){
     var filter = $(this)[0].className
     $(".filter").removeClass("clicked")
     $(this).addClass("clicked")
-    if(filter == "filter active"){
+    if(filter.includes("active")){
         applyFilter("active")
-    }else if(filter == "filter completed"){
+    }else if(filter.includes("completed")){
         applyFilter("completed")
     }else(
         applyFilter("all")
     ) 
 }
 function applyFilter(type){
-    var checked = []
-    var active = []
-    $("h3").each(function(i){
-        if($("h3")[i].className == "checked"){
-            checked.push($("h3")[i].parentElement)
-        }else{
-            active.push($("h3")[i].parentElement)
-        }
-    })
-
+    classify();
+    console.log(type)
     if(type == "completed"){
         active.forEach(function(j,i){
             j.classList.add("removing")
@@ -71,7 +97,7 @@ function applyFilter(type){
             j.classList.remove("removing")
         })
     }
-   
+    
 }
 function addCard(e){
     if(e.charCode == 13){
@@ -79,6 +105,7 @@ function addCard(e){
         var formattedtext = '<div class="item-card removing""><h3>'+text+ '</h3></div>'
         if(text != ""){
             $(".checklist-footer").before(formattedtext)
+            $(".input-field").val("")
             setTimeout(function(){
                 $(".removing").removeClass("removing")
             },100)
@@ -97,14 +124,11 @@ function clearCompleted(){
             
         },400)
     })
-
-    
     calculateItems()
 }
 function calculateItems(){
-    var noitems = ($(".item-card").length)-1
-    console.log(noitems)
-    $(".left").text(noitems + " items left")   
+    var noOfItems = active.length
+    console.log(noOfItems)
 }
 function changeTheme(){
     $("html").attr("data-theme",function(i,e){
