@@ -136,6 +136,9 @@ body{
     &::after{
         width:100%!important;
     }
+    &::before{
+        opacity: 1!important;
+    }
 }
 .checklist-footer{
     display: flex;
@@ -169,6 +172,21 @@ input:focus-visible{
 .filter:hover , .clear:hover{
     color:var(--hovered);
     cursor:pointer;
+}
+.item-card{
+    h3::before{
+        content : "";
+        width:20px;
+        height:20px;
+        position:absolute;
+        border-radius: 50%;
+        border:2px solid rgba(81, 81, 206, 0.192);
+        top: -4px;
+        left: -47px;
+        transition: opacity 0.3s linear;
+        background:url("images/icon-check.svg") no-repeat center,linear-gradient(to right,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+        opacity:0.12;
+    }
 }
 .mobile-menu{
     display: none;
