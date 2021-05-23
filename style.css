@@ -207,7 +207,7 @@ input:focus-visible {
   top: -4px;
   left: -47px;
   transition: opacity 0.3s linear;
-  background: url("images/icon-check.svg") no-repeat center, linear-gradient(to right, #57ddff, #c058f3);
+  background: url("images/check.png") no-repeat center;
   opacity: 0.12;
 }
 
