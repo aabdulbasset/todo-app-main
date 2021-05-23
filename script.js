@@ -17,6 +17,8 @@ var active = []
 
 //functions
 function classify(){
+    checked= []
+    active= []
     $("h3").each(function(i){
         if($("h3")[i].className == "checked"){
             if(checked.includes($("h3")[i].parentElement)){
@@ -116,19 +118,17 @@ function addCard(e){
     }
 }
 function clearCompleted(){
-    var loop = $(".checked");
-    loop.each(function(i){
-        $(".checked")[i].parentElement.classList.add("removing")
-        setTimeout(function(){
-            $(".removing").remove()
-            
-        },400)
+    test()
+    checked.forEach(function(i){
+        i.classList.add("removing")
+        setTimeout(function(){i.remove()},500)
     })
     calculateItems()
 }
 function calculateItems(){
     var noOfItems = active.length
-    console.log(noOfItems)
+    var text = noOfItems + " items left"
+    $(".left").text(text)
 }
 function changeTheme(){
     $("html").attr("data-theme",function(i,e){
@@ -150,3 +150,19 @@ function changeTheme(){
     })
     
 }
+MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+var observer = new MutationObserver(function(mutations, observer) {
+    // fired when a mutation occurs
+    classify()
+    calculateItems()
+    // ...
+});
+
+// define what element should be observed by the observer
+// and what types of mutations trigger the callback
+observer.observe(document, {
+  subtree: true,
+  attributes: true
+  //...
+});
